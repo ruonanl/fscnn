@@ -1,6 +1,6 @@
 # Ubuntu 14.04, CUDA 8.0
 
-FROM microsoft:2.0-gpu-python3.5-cuda8.0-cudnn5.1
+FROM microsoft/cntk:2.0-gpu-python3.5-cuda8.0-cudnn5.1
 
 # Get frcnn git repo and set up
 
