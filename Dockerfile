@@ -1,8 +1,9 @@
 # Ubuntu 14.04, CUDA 8.0
+#FROM microsoft/cntk:2.0-gpu-python3.5-cuda8.0-cudnn5.1
 
-FROM microsoft/cntk:2.0-gpu-python3.5-cuda8.0-cudnn5.1
+FROM microsoft/cntk:2.0-cpu-python3.5
 
-# Get frcnn git repo and set up
+###### Get frcnn git repo and set up
 
 RUN apt-get -qq update
 
@@ -28,10 +29,10 @@ RUN pip install EasyDict
 
 RUN pip install opencv-python
 
-# RUN pip install dlib ## tentatively removed
+#RUN pip install dlib ## tentatively removed
 
 
-# prepare fscnn-specifics
+###### prepare fscnn-specifics resources
 	
 RUN mkdir -p /fscnn/data/drone/testImages && \
 
@@ -44,9 +45,3 @@ RUN mkdir -p /fscnn/data/drone/testImages && \
     mkdir -p /fscnn/proc2/drone/models && \
 	
     wget https://droneimageadsgpu.blob.core.windows.net/fscnncntk2trainedmodels/2/frcn_nn.model -P /fscnn/proc2/drone/models
-	
-# test 
-
-WORKDIR /fscnn
-
-CMD ["python", "6_scoreImage_together.py"]
