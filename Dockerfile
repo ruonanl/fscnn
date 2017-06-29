@@ -49,4 +49,4 @@ RUN mkdir -p /fscnn/data/drone/testImages && \
 
 WORKDIR /fscnn
 
-RUN python 6_scoreImage_together.py
+CMD ["python", "6_scoreImage_together.py"]
