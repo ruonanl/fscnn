@@ -1,36 +1,12 @@
-# Ubuntu 14.04, CUDA 8.0
-#FROM microsoft/cntk:2.0-gpu-python3.5-cuda8.0-cudnn5.1
-
 FROM microsoft/cntk:2.0-cpu-python3.5
 
 ###### Get frcnn git repo and set up
 
-RUN apt-get -qq update
+RUN apt-get update && apt-get -y install git cmake libboost-all-dev
 
-RUN sudo apt-get -qq -y install git-all
-	
-RUN wget https://bootstrap.pypa.io/get-pip.py && \
+RUN git clone --depth 1 https://github.com/ruonanl/ObjectDetectionUsingCntk /fscnn
 
-    python get-pip.py
-
-RUN sudo apt-get -qq -y install cmake
-
-RUN git clone https://github.com/ruonanl/ObjectDetectionUsingCntk /fscnn
-	
-#RUN pip install -r ./requirements.txt ## tentatively replaced by the lines below
-
-RUN pip install scikit-learn
-
-RUN pip install Pillow
-
-RUN pip install future
-
-RUN pip install EasyDict
-
-RUN pip install opencv-python
-
-#RUN pip install dlib ## tentatively removed
-
+RUN bash -c "source /cntk/activate-cntk; pip install scikit-learn Pillow future EasyDict opencv-python"
 
 ###### prepare fscnn-specifics resources
 	
